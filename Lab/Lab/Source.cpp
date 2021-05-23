@@ -41,6 +41,8 @@ void Container::Out_Container(ofstream& ofst) {
     for (int i = 0; i < Len; i++) {
         ofst << i << ": ";
         Temp->Cont->Out_Array(Temp->Cont->Get_N(), ofst);
+        ofst << "Sum of matrix elements = " << 
+            Temp->Cont->Sum(Temp->Cont->Get_N()) << endl;
         ofst << endl;
         Temp = Temp->Next;
     }
@@ -96,8 +98,7 @@ void Two_dimensional_array::In_Array(int N, ifstream& ifst) {
     }
 }
 
-void Two_dimensional_array::Out_Array(int N, ofstream& ofst)
-{
+void Two_dimensional_array::Out_Array(int N, ofstream& ofst) {
     ofst << "It's two dimensional matrix with dimension = " << N << endl; //Выводим размерность массива
 
     for (int i = 0; i < N; i++) {
@@ -109,6 +110,18 @@ void Two_dimensional_array::Out_Array(int N, ofstream& ofst)
     }
 }
 
+int Two_dimensional_array::Sum(int N) {
+    int Sum = 0;
+
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            Sum += Array[i][j];
+        }
+    }
+
+    return Sum;
+}
+
 void Diagonal_matrix::In_Array(int N, ifstream& ifst) {
     Array = new int[N]; //Выделяем память для диагональной матрицы
 
@@ -117,8 +130,7 @@ void Diagonal_matrix::In_Array(int N, ifstream& ifst) {
     }
 }
 
-void Diagonal_matrix::Out_Array(int N, ofstream& ofst)
-{
+void Diagonal_matrix::Out_Array(int N, ofstream& ofst) {
     ofst << "It's diagonal matrix with dimension = " << N << endl; //Выводим размерность матрицы
 
     for (int i = 0; i < N; i++) {
@@ -133,4 +145,14 @@ void Diagonal_matrix::Out_Array(int N, ofstream& ofst)
 
         ofst << endl;
     }
+}
+
+int Diagonal_matrix::Sum(int N) {
+    int Sum = 0;
+
+    for (int i = 0; i < N; i++) {
+        Sum += Array[i];
+    }
+
+    return Sum;
 }

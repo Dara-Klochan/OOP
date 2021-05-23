@@ -15,6 +15,7 @@ public:
 											  //она будет определена каждого класса массива
 	virtual void Out_Array(int N, ofstream& ofst) = 0; //Чисто вирутальная функция вывода матрицы,
 											  //она будет определена каждого класса массива
+	virtual int Sum(int N) = 0; //Функция подсчета суммы элементов матрицы
 protected:
 	Matrix() {};
 };
@@ -42,6 +43,7 @@ class Two_dimensional_array : public Matrix {
 public:
 	void In_Array(int N, ifstream& ifst);  //Функция ввода массива
 	void Out_Array(int N, ofstream& ofst); //Функция вывода массива
+	int Sum(int N); //Функция подсчет суммы элементов матрицы
 	Two_dimensional_array() {};
 };
 
@@ -50,6 +52,7 @@ class Diagonal_matrix : public Matrix {
 public:
 	void In_Array(int N, ifstream& ifst); //Функция ввода массива
 	void Out_Array(int N, ofstream& ofst); //Функция вывода массива
+	int Sum(int N); //Функция подсчет суммы элементов матрицы
 	Diagonal_matrix() {};
 };
 

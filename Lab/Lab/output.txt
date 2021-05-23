@@ -5,12 +5,14 @@ Container contains 2 elements.
 1 2 3 
 4 0 6 
 7 5 9 
+Sum of matrix elements = 37
 
 1: It's diagonal matrix with dimension = 4
 9 0 0 0 
 0 7 0 0 
 0 0 2 0 
 0 0 0 1 
+Sum of matrix elements = 19
 
 Empty container. 
 Container contains 0 elements.
