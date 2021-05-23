@@ -23,6 +23,8 @@ int main(int argc, char* argv[])
 
     C.Out_Container(ofst);
 
+    C.Out_Only_Two_Dim(ofst);
+
     C.Clear_Container();
 
     ofst << "Empty container. " << endl;

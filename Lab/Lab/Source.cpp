@@ -55,6 +55,19 @@ void Container::Clear_Container() {
     Len = 0;
 }
 
+void Container::Out_Only_Two_Dim(ofstream& ofst) {
+    ofst << "Only Two Dimensional arrays." << endl << endl;
+
+    Node* Temp = Head;
+
+    for (int i = 0; i < Len; i++) {
+        ofst << i << ": ";
+        Temp->Cont->Out_Only_Two_Dim(Temp->Cont->Get_N(), ofst);
+        ofst << endl;
+        Temp = Temp->Next;
+    }
+}
+
 Matrix* Matrix::In_Matrix(ifstream& ifst) {
     Matrix* M = NULL; //Создаем указатель на матрицу
     int K;
@@ -82,6 +95,10 @@ int Matrix::Get_N() {
     return N;
 }
 
+void Matrix::Out_Only_Two_Dim(int N, ofstream& ofst) {
+    ofst << endl;
+}
+
 void Two_dimensional_array::In_Array(int N, ifstream& ifst) {
     Array = new int* [N]; //Выделение памяти под массив
 
@@ -96,8 +113,7 @@ void Two_dimensional_array::In_Array(int N, ifstream& ifst) {
     }
 }
 
-void Two_dimensional_array::Out_Array(int N, ofstream& ofst)
-{
+void Two_dimensional_array::Out_Array(int N, ofstream& ofst) {
     ofst << "It's two dimensional matrix with dimension = " << N << endl; //Выводим размерность массива
 
     for (int i = 0; i < N; i++) {
@@ -109,6 +125,10 @@ void Two_dimensional_array::Out_Array(int N, ofstream& ofst)
     }
 }
 
+void Two_dimensional_array::Out_Only_Two_Dim(int N, ofstream& ofst) {
+    Out_Array(N, ofst);
+}
+
 void Diagonal_matrix::In_Array(int N, ifstream& ifst) {
     Array = new int[N]; //Выделяем память для диагональной матрицы
 
@@ -117,8 +137,7 @@ void Diagonal_matrix::In_Array(int N, ifstream& ifst) {
     }
 }
 
-void Diagonal_matrix::Out_Array(int N, ofstream& ofst)
-{
+void Diagonal_matrix::Out_Array(int N, ofstream& ofst) {
     ofst << "It's diagonal matrix with dimension = " << N << endl; //Выводим размерность матрицы
 
     for (int i = 0; i < N; i++) {
