@@ -40,7 +40,7 @@ void Container::Out_Container(ofstream& ofst) {
 
     for (int i = 0; i < Len; i++) {
         ofst << i << ": ";
-        Temp->Cont->Out_Array(Temp->Cont->Get_N(), ofst);
+        Temp->Cont->Out_Array(Temp->Cont->Get_N(), Temp->Cont->Get_K_O(), ofst);
         ofst << endl;
         Temp = Temp->Next;
     }
@@ -71,6 +71,20 @@ Matrix* Matrix::In_Matrix(ifstream& ifst) {
         return 0;
     }
 
+    int Key_Out = 0;
+
+    ifst >> Key_Out;
+
+    if (Key_Out == 1) {
+        M->K_O = BY_LINE;
+    }
+    else if (Key_Out == 2) {
+        M->K_O = BY_COLUMN;
+    }
+    else if (Key_Out == 3) {
+        M->K_O = ONE_DIMENSIONAL;
+    }
+
     ifst >> M->N; //Cчитываем размерность массива
 
     M->In_Array(M->N, ifst); //Считываем элементы матрицы
@@ -80,6 +94,10 @@ Matrix* Matrix::In_Matrix(ifstream& ifst) {
 
 int Matrix::Get_N() {
     return N;
+}
+
+Key_Out Matrix::Get_K_O() {
+    return K_O;
 }
 
 void Two_dimensional_array::In_Array(int N, ifstream& ifst) {
@@ -96,13 +114,33 @@ void Two_dimensional_array::In_Array(int N, ifstream& ifst) {
     }
 }
 
-void Two_dimensional_array::Out_Array(int N, ofstream& ofst)
+void Two_dimensional_array::Out_Array(int N, Key_Out K_O, ofstream& ofst)
 {
     ofst << "It's two dimensional matrix with dimension = " << N << endl; //Выводим размерность массива
 
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            ofst << Array[i][j] << " "; //Вывод массива
+    if (K_O == BY_LINE) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                ofst << Array[i][j] << " ";
+            }
+
+            ofst << endl;
+        }
+    }
+    else if (K_O == BY_COLUMN) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                ofst << Array[j][i] << " ";
+            }
+
+            ofst << endl;
+        }
+    }
+    else if (K_O == ONE_DIMENSIONAL) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                ofst << Array[j][i] << " ";
+            }
         }
 
         ofst << endl;
@@ -117,17 +155,64 @@ void Diagonal_matrix::In_Array(int N, ifstream& ifst) {
     }
 }
 
-void Diagonal_matrix::Out_Array(int N, ofstream& ofst)
+void Diagonal_matrix::Out_Array(int N, Key_Out K_O, ofstream& ofst)
 {
     ofst << "It's diagonal matrix with dimension = " << N << endl; //Выводим размерность матрицы
 
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            if (i == j) {
-                ofst << Array[i] << " "; //Выводим элемент матрицы; (i == j) -> только по диагонали
+    int index = 0;
+
+    if (K_O == BY_LINE) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (i == j) {
+                    ofst << Array[index] << " ";
+                    index++;
+                }
+                else {
+                    ofst << 0 << " ";
+                }
             }
-            else {
-                ofst << "0 "; //(i != j) -> не диагональ, выводим нули
+
+            ofst << endl;
+        }
+    }
+    else if (K_O == BY_COLUMN) {
+        int** temp_matrix = new int* [N];
+
+        for (int i = 0; i < N; i++) {
+            temp_matrix[i] = new int[N];
+        }
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (i == j) {
+                    temp_matrix[i][j] = Array[index];
+                    index++;
+                }
+                else {
+                    temp_matrix[i][j] = 0;
+                }
+            }
+        }
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                ofst << temp_matrix[j][i] << " ";
+            }
+
+            ofst << endl;
+        }
+    }
+    else if (K_O == ONE_DIMENSIONAL) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (i == j) {
+                    ofst << Array[index] << " ";
+                    index++;
+                }
+                else {
+                    ofst << 0 << " ";
+                }
             }
         }
 

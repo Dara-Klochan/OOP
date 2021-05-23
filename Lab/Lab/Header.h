@@ -5,15 +5,24 @@
 
 using namespace std;
 
+//Способ вывода матрицы
+enum Key_Out {
+	BY_LINE, //По строкам
+	BY_COLUMN, //По столбцам
+	ONE_DIMENSIONAL //В виде одномерного массива
+};
+
 class Matrix {
 	int N;
+	Key_Out K_O;
 public:
 	int Get_N(); //Функция получения размерности массива (общее значение)
+	Key_Out Get_K_O(); //Функция получения способа вывода матрицы
 
 	static Matrix* In_Matrix(ifstream& ifst); //Функция ввода матрицы
 	virtual void In_Array(int N, ifstream& ifst) = 0; //Чисто вирутальная функция ввода матрицы,
 											  //она будет определена каждого класса массива
-	virtual void Out_Array(int N, ofstream& ofst) = 0; //Чисто вирутальная функция вывода матрицы,
+	virtual void Out_Array(int N, Key_Out K_O, ofstream& ofst) = 0; //Чисто вирутальная функция вывода матрицы,
 											  //она будет определена каждого класса массива
 protected:
 	Matrix() {};
@@ -41,7 +50,7 @@ class Two_dimensional_array : public Matrix {
 	int** Array; //Массив
 public:
 	void In_Array(int N, ifstream& ifst);  //Функция ввода массива
-	void Out_Array(int N, ofstream& ofst); //Функция вывода массива
+	void Out_Array(int N, Key_Out K_O, ofstream& ofst); //Функция вывода массива
 	Two_dimensional_array() {};
 };
 
@@ -49,7 +58,7 @@ class Diagonal_matrix : public Matrix {
 	int* Array; //Массива
 public:
 	void In_Array(int N, ifstream& ifst); //Функция ввода массива
-	void Out_Array(int N, ofstream& ofst); //Функция вывода массива
+	void Out_Array(int N, Key_Out K_O, ofstream& ofst); //Функция вывода массива
 	Diagonal_matrix() {};
 };
 

@@ -7,10 +7,7 @@ Container contains 2 elements.
 7 5 9 
 
 1: It's diagonal matrix with dimension = 4
-9 0 0 0 
-0 7 0 0 
-0 0 2 0 
-0 0 0 1 
+9 0 0 0 0 0 0 0 0 0 4 0 0 0 0 1 
 
 Empty container. 
 Container contains 0 elements.
