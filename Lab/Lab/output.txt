@@ -1,11 +1,12 @@
-Filled container. 
-Container contains 2 elements.
+Filled and sorted container. 
+Container contains 4 elements.
 
-0: It's two dimensional matrix with dimension = 3
-1 2 3 
-4 0 6 
-7 5 9 
-Sum of matrix elements = 37
+0: It's diagonal matrix with dimension = 4
+1 0 0 0 
+0 2 0 0 
+0 0 3 0 
+0 0 0 5 
+Sum of matrix elements = 11
 
 1: It's diagonal matrix with dimension = 4
 9 0 0 0 
@@ -13,6 +14,19 @@ Sum of matrix elements = 37
 0 0 2 0 
 0 0 0 1 
 Sum of matrix elements = 19
+
+2: It's two dimensional matrix with dimension = 3
+1 2 3 
+4 0 6 
+7 5 9 
+Sum of matrix elements = 37
+
+3: It's two dimensional matrix with dimension = 4
+4 6 7 0 
+7 8 7 1 
+1 0 2 2 
+4 5 6 1 
+Sum of matrix elements = 61
 
 Empty container. 
 Container contains 0 elements.

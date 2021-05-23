@@ -16,6 +16,7 @@ public:
 	virtual void Out_Array(int N, ofstream& ofst) = 0; //Чисто вирутальная функция вывода матрицы,
 											  //она будет определена каждого класса массива
 	virtual int Sum(int N) = 0; //Функция подсчета суммы элементов матрицы
+	bool Compare(Matrix* Other); //Функция сравнения сумм элементов матриц
 protected:
 	Matrix() {};
 };
@@ -34,6 +35,7 @@ public:
     void In_Container(ifstream& ifst); //Функция ввода элемента в контейнер
     void Out_Container(ofstream& ofst); //Функция вывода элемента из контейнера
     void Clear_Container(); //Функция очищения контейнера
+	void Sort(); //Функция сортировки контейнера
     Container(); //Конструктор
     ~Container() { Clear_Container(); } //Деструктор
 };

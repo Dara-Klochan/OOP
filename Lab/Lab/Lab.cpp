@@ -19,7 +19,9 @@ int main(int argc, char* argv[])
 
     C.In_Container(ifst);
 
-    ofst << "Filled container. " << endl;
+    C.Sort();
+
+    ofst << "Filled and sorted container. " << endl;
 
     C.Out_Container(ofst);
 
