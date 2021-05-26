@@ -81,6 +81,19 @@ void Container::Sort() {
     }
 }
 
+void Container::Out_Only_Two_Dim(ofstream& ofst) {
+    ofst << "Only Two Dimensional arrays." << endl << endl;
+
+    Node* Temp = Head;
+
+    for (int i = 0; i < Len; i++) {
+        ofst << i << ": ";
+        Temp->Cont->Out_Only_Two_Dim(Temp->Cont->Get_N(), Temp->Cont->Get_K_O(), ofst);
+        ofst << endl;
+        Temp = Temp->Next;
+    }
+}
+
 Matrix* Matrix::In_Matrix(ifstream& ifst) {
     Matrix* M = NULL; //Создаем указатель на матрицу
     int K;
@@ -131,6 +144,10 @@ Key_Out Matrix::Get_K_O() {
 
 bool Matrix::Compare(Matrix* Other) {
     return Sum(N) > Other->Sum(Other->N);
+}
+
+void Matrix::Out_Only_Two_Dim(int N, Key_Out K_O, ofstream& ofst) {
+    ofst << endl;
 }
 
 void Two_dimensional_array::In_Array(int N, ifstream& ifst) {
@@ -189,6 +206,10 @@ int Two_dimensional_array::Sum(int N) {
     }
 
     return Sum;
+}
+
+void Two_dimensional_array::Out_Only_Two_Dim(int N, Key_Out K_O, ofstream& ofst) {
+    Out_Array(N, K_O, ofst);
 }
 
 void Diagonal_matrix::In_Array(int N, ifstream& ifst) {

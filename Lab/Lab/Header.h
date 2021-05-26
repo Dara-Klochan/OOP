@@ -26,6 +26,7 @@ public:
 											  //она будет определена каждого класса массива
 	virtual int Sum(int N) = 0; //Функция подсчета суммы элементов матрицы
 	bool Compare(Matrix* Other); //Функция сравнения сумм элементов матриц
+	virtual void Out_Only_Two_Dim(int N, Key_Out K_O, ofstream& ofst); //Функция вывода только обычного двумерного массива
 protected:
 	Matrix() {};
 };
@@ -45,6 +46,7 @@ public:
     void Out_Container(ofstream& ofst); //Функция вывода элемента из контейнера
     void Clear_Container(); //Функция очищения контейнера
 	void Sort(); //Функция сортировки контейнера
+	void Out_Only_Two_Dim(ofstream& ofst); //Функция вывода только обычного двумерного массива
     Container(); //Конструктор
     ~Container() { Clear_Container(); } //Деструктор
 };
@@ -55,6 +57,7 @@ public:
 	void In_Array(int N, ifstream& ifst);  //Функция ввода массива
 	void Out_Array(int N, Key_Out K_O, ofstream& ofst); //Функция вывода массива
 	int Sum(int N); //Функция подсчет суммы элементов матрицы
+	void Out_Only_Two_Dim(int N, Key_Out K_O, ofstream& ofst); //Функция вывода только обычного двумерного массива
 	Two_dimensional_array() {};
 };
 
